@@ -1,0 +1,3 @@
+fieldName,value,statusCode,errorMSG
+userName,user03,404,User not found!
+userName,,400,UserName and Password required.
