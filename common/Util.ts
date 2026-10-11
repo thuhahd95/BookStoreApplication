@@ -44,7 +44,7 @@ export async function changeValueByKey(
 }
 
 //File path được tính từ /testdata, ví dụ: testdata/AuthorizedAPI/ValidationAuthorize.csv
-export async function copyFile(filePath: string): Promise<void> {
+export async function copyFile(filePath: string): Promise<string> {
   const fullFilePath = path.resolve(process.cwd(), filePath);
   const currentFileName = path.basename(fullFilePath);
   const newFileName = "copy_" + currentFileName;
@@ -53,5 +53,30 @@ export async function copyFile(filePath: string): Promise<void> {
     "testdata/AuthorizedAPI",
     newFileName,
   );
+  if (fs.existsSync(destinationPath)) {
+    await fs.unlinkSync(destinationPath);
+  }
   await fs.promises.copyFile(fullFilePath, destinationPath);
+  return destinationPath + newFileName;
+}
+
+export async function writeFile(filePath: string, data: string): Promise<void> {
+  const fullFilePath = path.resolve(process.cwd(), filePath);
+  await fs.promises.writeFile(fullFilePath, data);
+}
+
+export async function createValidationRequestBody(
+  filePath: string,
+  fieldName: string,
+  fieldValue: string,
+): Promise<string> {
+  const newRequestBodyPath = await copyFile(filePath);
+  const requestBody = await getDataFromJsonFile(newRequestBodyPath);
+  const newRequestBody = await changeValueByKey(
+    JSON.stringify(requestBody),
+    fieldName,
+    fieldValue,
+  );
+  writeFile(newRequestBodyPath, newRequestBody);
+  return newRequestBody;
 }
