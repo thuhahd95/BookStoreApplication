@@ -4,7 +4,12 @@
   "type": "module",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:Happy": "npx playwright test --grep \"@HappyCase\"",
+    "test:Validation": "npx playwright test --grep \"@ValidationCase\"",
+    "test:report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

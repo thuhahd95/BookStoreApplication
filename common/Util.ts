@@ -6,6 +6,7 @@ export async function getDataFromJsonFile(
   filePath: string,
 ): Promise<Record<string, string>> {
   const fullFilePath = path.resolve(process.cwd(), filePath);
+  console.log(`Full file path: ${fullFilePath}`);
   const data = await readFile(fullFilePath, "utf8");
   return JSON.parse(data);
 }
@@ -53,15 +54,17 @@ export async function copyFile(filePath: string): Promise<string> {
     "testdata/AuthorizedAPI",
     newFileName,
   );
+  console.log(`Destination path: ${destinationPath}`);
   if (fs.existsSync(destinationPath)) {
     await fs.unlinkSync(destinationPath);
   }
   await fs.promises.copyFile(fullFilePath, destinationPath);
-  return destinationPath + newFileName;
+  return destinationPath;
 }
 
 export async function writeFile(filePath: string, data: string): Promise<void> {
   const fullFilePath = path.resolve(process.cwd(), filePath);
+  console.log(`Writing to file: ${fullFilePath}`);
   await fs.promises.writeFile(fullFilePath, data);
 }
 
