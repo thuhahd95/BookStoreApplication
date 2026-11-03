@@ -1,3 +1,3 @@
 fieldName,fieldValue,statusCode,code,errorMSG
-userName,user03,404,1247,User not found!
-userName,,400,1248,UserName and Password required.
+userName,user03,404,1207,User not found!
+userName,,400,1200,UserName and Password required.

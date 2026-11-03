@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { getDataFromJsonFile } from "../../common/Util.js";
 const requestBody = getDataFromJsonFile(
-  "testdata/AuthorizedAPI/AuthorizedRequestBody.json",
+  "testdata/GenerateTokenAPI/GenerateTokenRequestBody.json",
 );
 test("Generate Token Success", async ({ request }) => {
   const response = await request.post("/Account/v1/GenerateToken", {
