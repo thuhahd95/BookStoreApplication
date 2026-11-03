@@ -11,12 +11,12 @@ pipeline {
     }
 
     stages {
-        stage('1. Checkout Code') {
-            steps {
-                // Checkout mã nguồn từ Git repository của bạn
-                checkout scm
-            }
-        }
+        // stage('1. Checkout Code') {
+        //     steps {
+        //         // Checkout mã nguồn từ Git repository của bạn
+        //         // checkout scm
+        //     }
+        // }
 
         stage('2. Install Dependencies') {
             steps {
