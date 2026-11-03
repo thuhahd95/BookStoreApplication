@@ -21,21 +21,21 @@ pipeline {
         stage('2. Install Dependencies') {
             steps {
                 // Cài đặt các npm packages
-                sh 'npm ci'
+                bat 'npm ci'
             }
         }
 
         stage('3. Install Playwright Browsers') {
             steps {
                 // Cài đặt các binary của trình duyệt Playwright (nếu chưa có trên agent)
-                sh 'npx playwright install --with-deps'
+                bat 'npx playwright install --with-deps'
             }
         }
 
         stage('4. Run Playwright Tests') {
             steps {
                 // Chạy lệnh test TypeScript/Playwright đã khai báo trong package.json
-                sh 'npm run test:Validation' // Chạy các test có tag @ValidationCase
+                bat 'npm run test:Validation' // Chạy các test có tag @ValidationCase
             }
         }
     }
